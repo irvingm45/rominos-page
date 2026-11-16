@@ -1,0 +1,303 @@
+@import "tailwindcss";
+
+/*
+ * Palette taken from the venue itself:
+ *   ground   #f8f6f2  the white walls, warmed a touch
+ *   surface  #eee9e1  the beige floor tiles
+ *   ink      #1e1d1b  black chairs, the black wall band and curtains (primary)
+ *   accent   #ac825c  the caramel of the Róminos logo (warm accent)
+ * Green appears only in the garden photographs and the "included" badge.
+ */
+@theme {
+  --color-ground: #f8f6f2;
+  --color-surface: #eee9e1;
+  --color-surface-2: #e5dfd5;
+  --color-ink: #1e1d1b;
+  --color-ink-soft: #3b3936;
+  --color-muted: #64625e;
+  --color-line: rgb(30 29 27 / 0.14);
+  --color-accent: #ac825c;
+  --color-accent-hover: #9a7350;
+  --color-accent-ink: #141311;
+  --color-accent-deep: #7a5634;
+  --color-garden: #3f6a2c;
+  --color-garden-tint: #e3ebdb;
+  --color-inv: #1e1d1b;
+  --color-inv-ink: #f8f6f2;
+  --color-inv-muted: #b0aca5;
+
+  --font-display: var(--font-fraunces), Georgia, serif;
+  --font-sans: var(--font-figtree), system-ui, sans-serif;
+
+  --ease-ui: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --ease-enter: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ---------- Rhythm tokens ---------- */
+:root {
+  --nav: 56px;
+  --padt: 96px;
+  --padb: 48px;
+  --gut: 24px;
+  --wrap: 1200px;
+  color-scheme: light;
+}
+@media (min-width: 640px) {
+  :root { --nav: 72px; --gut: 48px; --padt: 112px; --padb: 72px; }
+}
+@media (min-width: 1024px) {
+  :root { --gut: 80px; --padt: 120px; }
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--nav);
+  -webkit-text-size-adjust: 100%;
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
+body {
+  background: var(--color-ground);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.625;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-variation-settings: "SOFT" 30, "WONK" 0;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+  hyphens: manual;
+}
+
+::selection { background: var(--color-accent); color: var(--color-accent-ink); }
+
+/* ---------- Layout primitives ---------- */
+@utility wrap {
+  width: min(100% - 2 * var(--gut), var(--wrap));
+  margin-inline: auto;
+  position: relative;
+  z-index: 1;
+}
+
+/* A section is one or two screens tall; its h2 sits at the top padding. */
+@utility section-screen {
+  min-height: calc(var(--h, 1) * 100svh);
+  padding-top: var(--padt);
+  padding-bottom: var(--padb);
+}
+
+@utility t-h2 {
+  font-family: var(--font-display);
+  font-size: clamp(30px, 2.2vw + 18px, 48px);
+  line-height: 1.08;
+  letter-spacing: -0.025em;
+}
+@utility t-lead {
+  font-size: clamp(17px, 0.3vw + 16px, 20px);
+  line-height: 1.55;
+}
+@utility t-label {
+  font-family: var(--font-sans);
+  letter-spacing: 0;
+  font-size: 13px;
+  line-height: 16px;
+  font-weight: 500;
+}
+
+/* ---------- Focus ---------- */
+:focus-visible {
+  outline: 2px solid var(--color-accent-deep);
+  outline-offset: 2px;
+}
+
+@layer components {
+/* ---------- Buttons (dealt look: "arrow") ---------- */
+.btn {
+  --btn-bg: var(--color-ink);
+  --btn-fg: var(--color-inv-ink);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 48px;
+  padding: 12px 24px;
+  border-radius: 2px;
+  background: var(--btn-bg);
+  color: var(--btn-fg);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.2;
+  text-decoration: none;
+  transition: background-color 150ms var(--ease-ui), color 150ms var(--ease-ui), transform 150ms var(--ease-ui), border-color 150ms var(--ease-ui);
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.btn-primary { --btn-bg: var(--color-accent); --btn-fg: var(--color-accent-ink); }
+.btn-dark { --btn-bg: var(--color-ink); --btn-fg: var(--color-inv-ink); }
+.btn-wa { --btn-bg: #1f8f4e; --btn-fg: #ffffff; }
+.btn-outline {
+  --btn-bg: transparent;
+  --btn-fg: var(--color-ink);
+  border: 1.5px solid var(--color-ink);
+}
+.btn .btn-arrow { transition: transform 150ms var(--ease-ui); }
+.btn[disabled], .btn[aria-disabled="true"] { opacity: .45; cursor: not-allowed; }
+
+@media (hover: hover) and (pointer: fine) {
+  .btn:not([disabled]):hover { transform: translateY(-1px); background: color-mix(in oklab, var(--btn-bg), var(--color-ink) 14%); }
+  .btn-outline:not([disabled]):hover { background: rgb(30 29 27 / .06); }
+  .btn-dark:not([disabled]):hover { background: color-mix(in oklab, var(--btn-bg), white 12%); }
+  .btn:hover .btn-arrow { transform: translateX(3px); }
+}
+.btn:not([disabled]):active { transform: translateY(1px) scale(.985); transition-duration: 90ms; }
+
+/* Text link with a drawn underline */
+.link {
+  position: relative;
+  text-decoration: none;
+  background-image: linear-gradient(currentColor, currentColor), linear-gradient(var(--color-line), var(--color-line));
+  background-size: 0% 1px, 100% 1px;
+  background-position: 0 100%, 0 100%;
+  background-repeat: no-repeat;
+  padding-bottom: 2px;
+  transition: background-size 150ms var(--ease-ui);
+}
+.link:hover, .link:focus-visible { background-size: 100% 1px, 100% 1px; }
+
+/* Nav words: bare at rest, a 1px line draws 4px under on hover */
+.nav-word {
+  position: relative;
+  text-decoration: none;
+}
+.nav-word::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -4px;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 150ms var(--ease-ui);
+}
+.nav-word:hover::after, .nav-word:focus-visible::after, .nav-word[aria-expanded="true"]::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* Linked card lifts 2px; its photograph zooms inside its frame */
+.card-link { transition: transform 180ms var(--ease-ui), border-color 180ms var(--ease-ui), box-shadow 180ms var(--ease-ui); }
+.zoom-frame { overflow: hidden; }
+.zoom-frame img { transition: transform 400ms var(--ease-ui); }
+@media (hover: hover) and (pointer: fine) {
+  .card-link:hover { transform: translateY(-2px); border-color: rgb(30 29 27 / .3); box-shadow: 0 12px 24px -12px rgb(30 29 27 / .12); }
+  .card-link:hover .zoom-frame img, a.zoom-frame:hover img { transform: scale(1.03); transition-duration: 600ms; }
+}
+
+}
+
+/* ---------- Scroll reveal (only when JS runs and motion is allowed) ---------- */
+html.js .reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 700ms var(--ease-enter), transform 700ms var(--ease-enter);
+  transition-delay: calc(var(--reveal-i, 0) * 70ms);
+}
+html.js .reveal.is-in { opacity: 1; transform: none; }
+
+/* ---------- Hero entrance (CSS only: runs at first paint, no JS needed) ---------- */
+.hero-word { display: inline-block; overflow: hidden; vertical-align: top; padding-bottom: .08em; margin-bottom: -.08em; }
+.hero-word > span { display: inline-block; animation: hero-rise 700ms var(--ease-enter) both; animation-delay: calc(80ms + var(--i) * 28ms); }
+.hero-after { animation: hero-fade 520ms var(--ease-enter) both; animation-delay: calc(420ms + var(--i, 0) * 60ms); }
+.hero-photo img { animation: hero-settle 7s var(--ease-enter) both; }
+@keyframes hero-rise { from { transform: translateY(105%); } to { transform: none; } }
+@keyframes hero-fade { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+@keyframes hero-settle { from { transform: scale(1.08); } to { transform: scale(1); } }
+
+@media (prefers-reduced-motion: reduce) {
+  html.js .reveal { opacity: 1; transform: none; transition: none; }
+  .hero-word > span, .hero-after, .hero-photo img { animation: none; }
+  .btn, .card-link, .zoom-frame img, .nav-word::after, .link { transition: none !important; }
+  .btn:active { transform: none; }
+}
+
+/* Native <details> marker off; the FAQ draws its own */
+details > summary { list-style: none; }
+details > summary::-webkit-details-marker { display: none; }
+
+/* Range input styled to the palette */
+input[type="range"].range {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 32px;
+  background: transparent;
+  cursor: pointer;
+}
+input[type="range"].range::-webkit-slider-runnable-track {
+  height: 4px;
+  border-radius: 2px;
+  background: linear-gradient(to right, var(--color-ink) var(--fill, 50%), var(--color-surface-2) var(--fill, 50%));
+}
+input[type="range"].range::-moz-range-track { height: 4px; border-radius: 2px; background: var(--color-surface-2); }
+input[type="range"].range::-moz-range-progress { height: 4px; border-radius: 2px; background: var(--color-ink); }
+input[type="range"].range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 24px; height: 24px; margin-top: -10px;
+  border-radius: 50%;
+  background: var(--color-ground);
+  border: 2px solid var(--color-ink);
+  transition: transform 150ms var(--ease-ui);
+}
+input[type="range"].range::-moz-range-thumb {
+  width: 22px; height: 22px; border-radius: 50%;
+  background: var(--color-ground); border: 2px solid var(--color-ink);
+}
+input[type="range"].range:active::-webkit-slider-thumb { transform: scale(1.12); }
+
+/* Gallery lightbox dialog */
+dialog.lightbox::backdrop { background: rgb(20 19 17 / .88); }
+
+.tabular { font-variant-numeric: tabular-nums; }
+
+/* Dealt moment: picture-develops. The photograph comes up like a print in the tray, once. */
+html.js .reveal.develop { opacity: 1; transform: none; }
+html.js .develop img {
+  filter: grayscale(1) contrast(.55) brightness(1.32) sepia(.12);
+  transform: scale(1.04);
+  transition: filter 1700ms var(--ease-enter), transform 1700ms var(--ease-enter);
+}
+html.js .develop.is-in img { filter: none; transform: none; }
+
+/* Booking steps: the line between numbers draws down as each step arrives. */
+html.js .steps .step-line { transform: scaleY(0); transform-origin: top; transition: transform 900ms var(--ease-enter) 200ms; }
+html.js .steps .is-in .step-line { transform: scaleY(1); }
+
+/* FAQ answer fades in when its question opens. */
+.faq[open] .faq-a { animation: faq-in 260ms var(--ease-enter); }
+@keyframes faq-in { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: none; } }
+
+@media (prefers-reduced-motion: reduce) {
+  html.js .develop img { filter: none; transform: none; transition: none; }
+  html.js .steps .step-line { transform: none; transition: none; }
+  .faq[open] .faq-a { animation: none; }
+}
+
+/* Floor plan: new tables and balloons pop in; chairs slide around their table. */
+.plan-pop { transform-box: fill-box; transform-origin: center; animation: plan-pop 420ms var(--ease-enter) both; }
+.plan-chair { transition: transform 320ms var(--ease-enter); animation: plan-fade 260ms ease-out both; }
+@keyframes plan-pop { from { transform: scale(.3); opacity: 0; } to { transform: none; opacity: 1; } }
+@keyframes plan-fade { from { opacity: 0; } to { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) {
+  .plan-pop, .plan-chair { animation: none; transition: none; }
+}

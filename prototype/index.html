@@ -1,0 +1,395 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Salón Rominos | Salón de fiestas en San Martín Texmelucan</title>
+  <meta name="description" content="Salón de eventos con jardín, cocina y área de juegos incluida en San Martín Texmelucan, Puebla. Revisa fechas disponibles y cotiza tu fiesta en línea.">
+  <meta name="theme-color" content="#1d1d1b">
+  <link rel="icon" href="assets/img/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Young+Serif&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+
+  <div class="demo-bar" id="demoBar">
+    <p>Prototipo de demostración. Precios, capacidad y fechas ocupadas son de ejemplo.</p>
+    <button type="button" class="demo-bar__close" aria-label="Ocultar aviso" data-close-demo>&times;</button>
+  </div>
+
+  <header class="site-header">
+    <div class="wrap site-header__inner">
+      <a href="#inicio" class="site-header__logo" aria-label="Salón Rominos, inicio">
+        <img src="assets/img/logo.png" alt="Salón Rominos" width="520" height="166">
+      </a>
+      <nav class="site-nav" aria-label="Principal">
+        <a href="#eventos">Eventos</a>
+        <a href="#espacios">Espacios</a>
+        <a href="#planea">Fechas y precios</a>
+        <a href="#preguntas">Preguntas</a>
+        <a href="#ubicacion">Ubicación</a>
+      </nav>
+      <a class="btn btn--dark btn--sm" href="#planea">Cotizar</a>
+    </div>
+  </header>
+
+  <main id="inicio">
+
+    <!-- ============ HERO ============ -->
+    <section class="hero">
+      <div class="wrap hero__grid">
+        <div class="hero__text">
+          <p class="hero__place">Salón de eventos en San Martín Texmelucan</p>
+          <h1>La vida son momentos. Celébralos con nosotros.</h1>
+          <p class="hero__lead">Salón techado, jardín, cocina y área de juegos para los niños. Tú eliges mesas, sillas y decoración, y lo dejamos listo para tu evento.</p>
+          <div class="hero__actions">
+            <a class="btn btn--brand" href="#planea">Ver fechas y cotizar</a>
+            <a class="btn btn--line" data-wa="Hola, vi su página y quiero información sobre el salón." href="#" target="_blank" rel="noopener">Escríbenos por WhatsApp</a>
+          </div>
+        </div>
+        <figure class="hero__photo">
+          <img src="assets/img/jardin.webp" alt="Jardín con pasto y setos frente al salón techado de Rominos" width="1600" height="1600" fetchpriority="high">
+        </figure>
+      </div>
+
+      <div class="zocalo">
+        <div class="wrap zocalo__inner">
+          <p class="zocalo__label">Próximos sábados disponibles</p>
+          <div class="zocalo__dates" id="heroDates" aria-live="polite"></div>
+          <a href="#planea" class="zocalo__link">Ver calendario completo</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ EVENTOS ============ -->
+    <section class="section" id="eventos">
+      <div class="wrap">
+        <h2>¿Qué vas a celebrar?</h2>
+        <p class="section__lead">Elige tu evento y preparamos una cotización de ejemplo con lo que normalmente se pide.</p>
+        <div class="event-list" id="eventList" role="list"></div>
+        <div class="event-detail" id="eventDetail" hidden>
+          <p id="eventDetailText"></p>
+          <a class="btn btn--dark" href="#planea" id="eventDetailCta">Cotizar este evento</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ ESPACIOS ============ -->
+    <section class="section section--tight" id="espacios">
+      <div class="wrap">
+        <h2>Todo en un mismo lugar</h2>
+        <div class="spaces">
+          <figure class="space space--salon">
+            <img src="assets/img/salon-amplio.webp" alt="Salón techado con mesas redondas, manteles blancos y sillas negras" loading="lazy" width="1600" height="1199">
+            <figcaption>
+              <h3>Salón techado</h3>
+              <p>Mesas redondas con mantel y sillas acojinadas. Las lonas se cierran si hace frío o llueve.</p>
+            </figcaption>
+          </figure>
+          <figure class="space space--juegos">
+            <img src="assets/img/area-juegos.webp" alt="Área de juegos con resbaladilla, casita y juego de tubos sobre pasto" loading="lazy" width="1100" height="1465">
+            <span class="badge">Incluida sin costo</span>
+            <figcaption>
+              <h3>Área de juegos</h3>
+              <p>Resbaladilla, casita, trampolín y juego de tubos para que los niños se diviertan toda la fiesta.</p>
+            </figcaption>
+          </figure>
+          <figure class="space space--jardin">
+            <img src="assets/img/jardin-juegos.webp" alt="Jardín con setos podados y vista al área de juegos" loading="lazy" width="1600" height="1199">
+            <figcaption>
+              <h3>Jardín</h3>
+              <p>Pasto natural para ceremonias, fotos o inflables.</p>
+            </figcaption>
+          </figure>
+          <div class="space space--cocina">
+            <svg viewBox="0 0 48 48" aria-hidden="true" class="space__icon"><path d="M10 20h28v18a4 4 0 0 1-4 4H14a4 4 0 0 1-4-4V20Z" fill="none" stroke="currentColor" stroke-width="2.5"/><path d="M6 20h36M17 14c0-3 3-3 3-6M24 14c0-3 3-3 3-6M31 14c0-3 3-3 3-6" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>
+            <h3>Cocina</h3>
+            <p>Área con barra y refrigerador para que tu familia o tu banquetero prepare y sirva la comida.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ ANTES / DESPUÉS ============ -->
+    <section class="section section--dark" id="decoracion">
+      <div class="wrap reveal-grid">
+        <div class="reveal-grid__text">
+          <h2>El mismo salón, a tu manera</h2>
+          <p>Paredes blancas y mobiliario en blanco y negro: un fondo neutro que combina con cualquier temática, de una fiesta de dinosaurios a una boda en tonos dorados.</p>
+          <p>Nuestro servicio de decoración con globos y adornos lo transforma. Desliza para ver la diferencia.</p>
+          <p class="note">Simulación ilustrativa. En la versión final aquí va una foto real de un evento decorado por Rominos.</p>
+        </div>
+        <div class="compare" id="compare" style="--pos: 50%">
+          <img class="compare__img" src="assets/img/salon-amplio.webp" alt="Salón sin decorar" loading="lazy" width="1600" height="1199">
+          <div class="compare__after" aria-hidden="true">
+            <img class="compare__img compare__img--warm" src="assets/img/salon-amplio.webp" alt="" loading="lazy" width="1600" height="1199">
+            <svg class="compare__decor" id="decor" viewBox="0 0 1600 1199" preserveAspectRatio="xMidYMid slice"></svg>
+          </div>
+          <span class="compare__tag compare__tag--before">Sin decorar</span>
+          <span class="compare__tag compare__tag--after">Decorado</span>
+          <div class="compare__handle" aria-hidden="true"><span></span></div>
+          <input class="compare__range" type="range" min="0" max="100" value="50" aria-label="Comparar salón sin decorar y decorado">
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PLANEA TU EVENTO ============ -->
+    <section class="section planner" id="planea">
+      <div class="wrap">
+        <h2>Planea tu evento</h2>
+        <p class="section__lead">Elige tu fecha, cuántos invitados tendrás y qué quieres agregar. Te mostramos un precio estimado y lo envías por WhatsApp para confirmar.</p>
+
+        <div class="planner__grid">
+          <div class="planner__steps">
+
+            <!-- Paso 1: fecha -->
+            <fieldset class="step">
+              <legend class="step__title"><span class="step__num">1</span>Elige tu fecha</legend>
+              <div class="cal" id="calendar">
+                <div class="cal__head">
+                  <button type="button" class="cal__nav" id="calPrev" aria-label="Mes anterior">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </button>
+                  <p class="cal__month" id="calMonth" aria-live="polite"></p>
+                  <button type="button" class="cal__nav" id="calNext" aria-label="Mes siguiente">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </button>
+                </div>
+                <div class="cal__weekdays" aria-hidden="true">
+                  <span>L</span><span>M</span><span>M</span><span>J</span><span>V</span><span>S</span><span>D</span>
+                </div>
+                <div class="cal__days" id="calDays"></div>
+                <ul class="cal__legend">
+                  <li><i class="dot dot--free"></i>Disponible</li>
+                  <li><i class="dot dot--busy"></i>Ocupado</li>
+                  <li><i class="dot dot--pending"></i>Apartado por ti, por confirmar</li>
+                </ul>
+              </div>
+              <table class="rates">
+                <caption>Renta del salón por {horas} horas. Incluye jardín, cocina y área de juegos.</caption>
+                <tbody id="ratesBody"></tbody>
+              </table>
+            </fieldset>
+
+            <!-- Paso 2: evento e invitados -->
+            <fieldset class="step">
+              <legend class="step__title"><span class="step__num">2</span>Tu evento</legend>
+              <label class="field">
+                <span class="field__label">Tipo de evento</span>
+                <select id="eventSelect" class="select"></select>
+              </label>
+
+              <div class="field">
+                <div class="field__row">
+                  <label class="field__label" for="guestsRange">Invitados</label>
+                  <output id="guestsOut" class="guests-out" for="guestsRange">60</output>
+                </div>
+                <input type="range" id="guestsRange" class="range" min="10" max="200" step="5" value="60">
+                <p class="field__hint" id="capacityHint"></p>
+              </div>
+
+              <div class="qty-list">
+                <div class="qty">
+                  <div>
+                    <p class="qty__name">Mesas redondas con mantel</p>
+                    <p class="qty__price" data-price="mesa"></p>
+                  </div>
+                  <div class="stepper" data-stepper="mesas" data-min="1" data-max="24">
+                    <button type="button" aria-label="Quitar una mesa" data-dir="-1">−</button>
+                    <output aria-live="polite">6</output>
+                    <button type="button" aria-label="Agregar una mesa" data-dir="1">+</button>
+                  </div>
+                </div>
+                <div class="qty">
+                  <div>
+                    <p class="qty__name">Sillas</p>
+                    <p class="qty__price" data-price="silla"></p>
+                  </div>
+                  <div class="stepper" data-stepper="sillas" data-min="1" data-max="260" data-step="5">
+                    <button type="button" aria-label="Quitar cinco sillas" data-dir="-1">−</button>
+                    <output aria-live="polite">60</output>
+                    <button type="button" aria-label="Agregar cinco sillas" data-dir="1">+</button>
+                  </div>
+                </div>
+              </div>
+              <p class="field__hint" id="autoHint">Calculamos 1 mesa por cada 10 invitados. <button type="button" class="linkish" id="resetAuto" hidden>Volver a calcular</button></p>
+            </fieldset>
+
+            <!-- Paso 3: decoración -->
+            <fieldset class="step">
+              <legend class="step__title"><span class="step__num">3</span>Decoración con globos y adornos</legend>
+              <div class="options" id="decoOptions"></div>
+            </fieldset>
+
+            <!-- Paso 4: extras -->
+            <fieldset class="step">
+              <legend class="step__title"><span class="step__num">4</span>Extras</legend>
+              <div class="qty-list" id="extrasList"></div>
+              <p class="included">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                Siempre incluido: jardín, cocina y área de juegos.
+              </p>
+            </fieldset>
+          </div>
+
+          <!-- Resumen -->
+          <aside class="summary" id="summary" aria-labelledby="summaryTitle">
+            <div class="plan">
+              <div class="plan__head">
+                <h3 id="summaryTitle">Así quedaría tu evento</h3>
+                <p class="plan__caption" id="planCaption"></p>
+              </div>
+              <svg class="plan__svg" id="floorPlan" viewBox="0 0 360 300" role="img" aria-label="Plano ilustrativo del salón con tus mesas"></svg>
+              <p class="plan__note">Plano ilustrativo, no a escala.</p>
+            </div>
+
+            <div class="receipt">
+              <p class="receipt__date" id="sumDate">Aún no eliges fecha</p>
+              <ul class="receipt__lines" id="sumLines"></ul>
+              <div class="receipt__total">
+                <span>Total estimado</span>
+                <strong id="sumTotal">$0</strong>
+              </div>
+              <p class="receipt__deposit" id="sumDeposit"></p>
+              <button type="button" class="btn btn--brand btn--block" id="bookBtn">Apartar esta fecha</button>
+              <a class="btn btn--wa btn--block" id="quoteWa" href="#" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" aria-hidden="true" class="wa-icon"><use href="#wa"/></svg>
+                Enviar cotización por WhatsApp
+              </a>
+              <p class="receipt__fine">Precio estimado. Rominos te confirma el total y la disponibilidad por WhatsApp.</p>
+            </div>
+          </aside>
+        </div>
+      </div>
+
+      <div class="mobile-total" id="mobileTotal" hidden>
+        <div>
+          <span>Total estimado</span>
+          <strong id="mobileTotalValue">$0</strong>
+        </div>
+        <a href="#summary" class="btn btn--brand btn--sm">Ver resumen</a>
+      </div>
+    </section>
+
+    <!-- ============ PREGUNTAS ============ -->
+    <section class="section section--tight" id="preguntas">
+      <div class="wrap faq-grid">
+        <h2>Preguntas frecuentes</h2>
+        <div class="faq" id="faq">
+          <details>
+            <summary>¿Cuántas personas caben?</summary>
+            <p>Hasta <span data-cfg="capacidadMax"></span> invitados sentados entre el salón y el jardín. Si tu evento es más grande, escríbenos y lo revisamos.</p>
+          </details>
+          <details>
+            <summary>¿Cuántas horas incluye la renta?</summary>
+            <p><span data-cfg="horasIncluidas"></span> horas. Puedes agregar horas extra desde el cotizador.</p>
+          </details>
+          <details>
+            <summary>¿El área de juegos cuesta aparte?</summary>
+            <p>No. El área de juegos va incluida en la renta del salón. Los inflables sí tienen costo adicional.</p>
+          </details>
+          <details>
+            <summary>¿Cómo aparto mi fecha?</summary>
+            <p>Elige tu fecha en el calendario y envía tu solicitud por WhatsApp. La fecha queda confirmada al pagar un anticipo del <span data-cfg="anticipoPct"></span> por transferencia o depósito.</p>
+          </details>
+          <details>
+            <summary>¿Puedo llevar mi comida y bebida?</summary>
+            <p>Sí. Tienes acceso al área de cocina para preparar y servir, o puedes traer a tu banquetero.</p>
+          </details>
+          <details>
+            <summary>¿Qué pasa si llueve?</summary>
+            <p>El salón está techado y tiene lonas que se bajan para cubrirlo. Tu evento sigue igual.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ UBICACIÓN ============ -->
+    <section class="section section--tight" id="ubicacion">
+      <div class="wrap location">
+        <div class="location__text">
+          <h2>Cómo llegar</h2>
+          <p class="location__city" data-cfg="ciudad"></p>
+          <p data-cfg="referencia"></p>
+          <div class="location__actions">
+            <a class="btn btn--dark" id="mapsLink" href="#" target="_blank" rel="noopener">Abrir en Google Maps</a>
+            <a class="btn btn--line-dark" id="callLink" href="#"><span>Llamar al <span data-cfg="telefonoFmt"></span></span></a>
+          </div>
+        </div>
+        <div class="location__map">
+          <iframe id="mapFrame" title="Mapa de Salón Rominos" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap site-footer__inner">
+      <div>
+        <img src="assets/img/logo.png" alt="Salón Rominos" class="site-footer__logo" width="520" height="166" loading="lazy">
+        <p>La vida son momentos. Celébralos con nosotros.</p>
+      </div>
+      <div class="site-footer__links">
+        <a href="#" id="fbLink" target="_blank" rel="noopener">Facebook</a>
+        <a href="#" id="igLink" target="_blank" rel="noopener">Instagram</a>
+        <a href="#" data-wa="Hola, vi su página y quiero información sobre el salón." target="_blank" rel="noopener">WhatsApp</a>
+      </div>
+      <p class="site-footer__copy">© <span id="year"></span> Salón Rominos. San Martín Texmelucan, Puebla.</p>
+    </div>
+  </footer>
+
+  <!-- Botón flotante de WhatsApp -->
+  <a class="wa-float" href="#" data-wa="Hola, vi su página y quiero información sobre el salón." target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#wa"/></svg>
+  </a>
+
+  <!-- Diálogo para apartar fecha -->
+  <dialog class="dialog" id="bookDialog" aria-labelledby="bookTitle">
+    <form method="dialog" class="dialog__form" id="bookForm" novalidate>
+      <button type="button" class="dialog__close" aria-label="Cerrar" data-close-dialog>&times;</button>
+      <div id="bookStepForm">
+        <h3 id="bookTitle">Apartar fecha</h3>
+        <p class="dialog__date" id="bookDate"></p>
+        <p class="dialog__total" id="bookTotal"></p>
+        <label class="field">
+          <span class="field__label">Tu nombre</span>
+          <input type="text" name="nombre" class="input" autocomplete="name" required>
+          <span class="field__error" data-error-for="nombre">Escribe tu nombre para que sepamos a quién apartarle la fecha.</span>
+        </label>
+        <label class="field">
+          <span class="field__label">Teléfono a 10 dígitos</span>
+          <input type="tel" name="telefono" class="input" autocomplete="tel" inputmode="numeric" required>
+          <span class="field__error" data-error-for="telefono">Escribe un teléfono de 10 dígitos.</span>
+        </label>
+        <label class="field">
+          <span class="field__label">Comentarios (opcional)</span>
+          <textarea name="comentarios" class="input" rows="2" placeholder="Horario, temática, dudas..."></textarea>
+        </label>
+        <button type="submit" class="btn btn--wa btn--block">
+          <svg viewBox="0 0 24 24" aria-hidden="true" class="wa-icon"><use href="#wa"/></svg>
+          Enviar solicitud por WhatsApp
+        </button>
+        <p class="receipt__fine">Tu fecha queda confirmada cuando Rominos recibe el anticipo.</p>
+      </div>
+      <div id="bookStepDone" hidden>
+        <svg viewBox="0 0 48 48" class="dialog__check" aria-hidden="true"><circle cx="24" cy="24" r="22" fill="none" stroke="currentColor" stroke-width="2.5"/><path d="M14 25l7 7 13-15" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <h3>Solicitud enviada</h3>
+        <p id="bookDoneText"></p>
+        <button type="button" class="btn btn--dark btn--block" data-close-dialog>Listo</button>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- Ícono de WhatsApp reutilizable -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="wa" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 18.15h-.01a8.23 8.23 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.22 8.22 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.25-8.24 2.2 0 4.27.86 5.83 2.42a8.18 8.18 0 0 1 2.41 5.83c0 4.54-3.7 8.23-8.24 8.23Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.13-.15.17-.25.25-.42.08-.17.04-.31-.02-.43-.06-.13-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.22.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.14-1.18-.06-.1-.22-.16-.47-.29Z"/>
+    </symbol>
+  </svg>
+
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>
