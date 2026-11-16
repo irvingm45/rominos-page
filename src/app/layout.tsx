@@ -41,9 +41,9 @@ export const metadata: Metadata = {
     siteName: business.name,
     title,
     description,
-    images: [{ url: "/og.jpg", width: 1200, height: 630, alt: "Jardín y salón techado de Róminos" }],
+    images: [{ url: `${business.siteUrl}/og.jpg`, width: 1200, height: 630, alt: "Jardín y salón techado de Róminos" }],
   },
-  twitter: { card: "summary_large_image", title, description, images: ["/og.jpg"] },
+  twitter: { card: "summary_large_image", title, description, images: [`${business.siteUrl}/og.jpg`] },
   other: {
     "page-type": "place",
     "site-kind": "other",

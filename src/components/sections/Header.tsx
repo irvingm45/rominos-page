@@ -6,6 +6,7 @@ import { business, placeLine, MAIN_ACTION } from "@/data/business";
 import { spaces } from "@/data/content";
 import { Photo } from "@/components/ui/Photo";
 import { ArrowGlyph } from "@/components/ui/Glyphs";
+import { asset } from "@/lib/asset";
 
 const links = [
   { href: "#eventos", label: "Eventos" },
@@ -51,7 +52,7 @@ export function Header() {
         </a>
         <a href="#top" className="shrink-0" aria-label={`${business.name}, inicio`}>
           {/* The client's own logo file (caramel on transparent). */}
-          <img src="/brand/logo-280.png" srcSet="/brand/logo-280.png 280w, /brand/logo.png 520w" sizes="140px" alt={business.alternateName} width={280} height={89} className="h-9 w-auto sm:h-11" />
+          <img src={asset("/brand/logo-280.png")} srcSet={`${asset("/brand/logo-280.png")} 280w, ${asset("/brand/logo.png")} 520w`} sizes="140px" alt={business.alternateName} width={280} height={89} className="h-9 w-auto sm:h-11" />
         </a>
 
         <nav aria-label="Principal" className="ml-auto hidden items-center gap-7 min-[1180px]:flex">

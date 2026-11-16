@@ -52,7 +52,7 @@ export const business = {
   ] satisfies OpeningHours[],
 
   /** Public URL of the site, used for canonical links and structured data. */
-  siteUrl: "https://rominos.example", // TODO: dominio real
+  siteUrl: process.env.NEXT_PUBLIC_SITE_URL ?? "https://rominos.example", // TODO: dominio real
 } as const;
 
 export const whatsappLink = (text?: string) =>

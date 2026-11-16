@@ -1,5 +1,6 @@
 import { photoManifest, type PhotoId } from "@/data/photos.generated";
 import type { CSSProperties } from "react";
+import { asset } from "@/lib/asset";
 
 interface PhotoProps {
   id: PhotoId;
@@ -16,14 +17,14 @@ interface PhotoProps {
 /** Responsive AVIF/WebP photo built from the files scripts/optimize-images.mjs writes. */
 export function Photo({ id, alt, sizes, priority, className, imgClassName, imgStyle }: PhotoProps) {
   const p = photoManifest[id];
-  const set = (fmt: "avif" | "webp") => p.widths.map((w) => `/img/${id}-${w}.${fmt} ${w}w`).join(", ");
+  const set = (fmt: "avif" | "webp") => p.widths.map((w) => `${asset(`/img/${id}-${w}.${fmt}`)} ${w}w`).join(", ");
   const fallbackWidth = p.widths.find((w) => w >= 1080) ?? p.widths[p.widths.length - 1];
   return (
     <picture className={className}>
       <source type="image/avif" srcSet={set("avif")} sizes={sizes} />
       <source type="image/webp" srcSet={set("webp")} sizes={sizes} />
       <img
-        src={`/img/${id}-${fallbackWidth}.webp`}
+        src={asset(`/img/${id}-${fallbackWidth}.webp`)}
         alt={alt}
         width={p.width}
         height={p.height}

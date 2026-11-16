@@ -5,10 +5,19 @@ Sitio de una sola página para Róminos (San Martín Texmelucan, Puebla). Next.j
 ## Comandos
 
 ```bash
-npm install
-npm run dev     # http://localhost:3000 (genera las fotos optimizadas antes de arrancar)
-npm run build   # escribe el sitio estático en /out, listo para cualquier hosting estático
+pnpm install
+pnpm dev        # http://localhost:3000 (genera las fotos optimizadas antes de arrancar)
+pnpm build      # escribe el sitio estático en /out, listo para cualquier hosting estático
+pnpm typecheck  # revisa los tipos de TypeScript
 ```
+
+## Publicación (GitHub Actions)
+
+`.github/workflows/deploy.yml` construye el sitio en cada push y pull request, y publica la rama `main` en GitHub Pages.
+
+- Activa Pages una vez: **Settings → Pages → Source: GitHub Actions**.
+- En GitHub Pages el sitio vive en `/<nombre-del-repo>/`; el workflow pasa ese prefijo como `NEXT_PUBLIC_BASE_PATH` y la URL pública como `NEXT_PUBLIC_SITE_URL`. Con un dominio propio el prefijo queda vacío solo.
+- Las rutas a archivos de `public/` en `<img>` o `<source>` van con `asset("/ruta")` de `src/lib/asset.ts`, para que funcionen con y sin prefijo.
 
 ## Dónde se edita cada cosa
 
